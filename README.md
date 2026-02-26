@@ -1,4 +1,4 @@
-🚀 RFID Based Smart Electronic Voting System
+# 🚀 RFID Based Smart Electronic Voting System
 ARM7 LPC2148 | Embedded C | UART (Interrupt) | I2C | RTC | EEPROM
 📌 Project Overview
 
