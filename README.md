@@ -29,6 +29,7 @@ Embedded menu driven firmware design
 Real-time system control using RTC
 
 🧠 System Block Diagram
+
 Communication Interfaces
 Peripheral	Protocol
 RFID Reader	UART0 (Interrupt Based)
