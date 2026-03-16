@@ -82,23 +82,23 @@ The LPC2148 microcontroller acts as the central controller, managing authenticat
 
 Officer logs in using:
 
-RFID card
+-> RFID card
 
-Password
+-> Password
 
-Officer can:
+-> Officer can:
 
-Set voting start time
+-> Set voting start time
 
-Set voting end time
+-> Set voting end time
 
-Start or stop voting
+-> Start or stop voting
 
-View results
+-> View results
 
-Reset voting
+-> Reset voting
 
-Edit RTC time
+-> Edit RTC time
 
 2️⃣ Voting Process
 
