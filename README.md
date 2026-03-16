@@ -142,59 +142,59 @@ Address	Data Stored
 
 0x0000	Vote counts
 
-🔄 Why UART Interrupt for RFID?
+--- 🔄 Why UART Interrupt for RFID? ---
 
 Using UART interrupt allows:
 
-Efficient data reception
+-> Efficient data reception
 
-No continuous polling
+-> No continuous polling
 
-Fast response to RFID card detection
+-> Fast response to RFID card detection
 
-Better CPU utilization
+-> Better CPU utilization
 
-The interrupt service routine (ISR):
+-> The interrupt service routine (ISR):
 
-Receives RFID data
+-> Receives RFID data
 
-Stores card ID
+-> Stores card ID
 
-Sets a flag for processing in the main loop
+-> Sets a flag for processing in the main loop
 
-🛠 Hardware Components
+--- 🛠 Hardware Components ---
 
-ARM7 LPC2148 Microcontroller
+-> ARM7 LPC2148 Microcontroller
 
-RFID Reader Module
+-> RFID Reader Module
 
-RFID Cards
+-> RFID Cards
 
-20x4 LCD Display
+-> 20x4 LCD Display
 
-4x4 Matrix Keypad
+-> 4x4 Matrix Keypad
 
-AT24C256 EEPROM
+-> AT24C256 EEPROM
 
-RTC Module
+-> RTC Module
 
-Status LEDs
+-> Status LEDs
 
-Power Supply
+-> Power Supply
 
-USB-to-UART Converter
+-> USB-to-UART Converter
 
-🧰 Tools Used
+--- 🧰 Tools Used ---
 
-Keil µVision
+-> Keil µVision
 
-Flash Magic
+-> Flash Magic
 
-Embedded C
+-> Embedded C
 
-UART Communication
+-> UART Communication
 
-I2C Protocol Implementation
+-> I2C Protocol Implementation
 
 🎥 Project Demo
 
@@ -204,7 +204,6 @@ I2C Protocol Implementation
 👨‍💻 Author
 
 Gali Narendra
-Embedded Systems Developer
 
 GitHub
 https://github.com/ngali8032
