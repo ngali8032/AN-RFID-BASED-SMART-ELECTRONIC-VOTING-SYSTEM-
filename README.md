@@ -77,7 +77,9 @@ The LPC2148 microcontroller acts as the central controller, managing authenticat
 
 ✔ UART interrupt driven RFID reading
 
+
 ⚙️ How the System Works
+
 1️⃣ Officer Configuration
 
 Officer logs in using:
