@@ -30,6 +30,7 @@ Real-time system control using RTC
 
 🧠 System Block Diagram
 
+
 -> Communication Interfaces
 
 -> Peripheral	Protocol
