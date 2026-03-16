@@ -29,34 +29,35 @@ Embedded menu driven firmware design
 Real-time system control using RTC
 
 🧠 System Block Diagram
-                                             +----------------------+
-                           |      Power Supply    |
-                           |        5V / 3.3V     |
-                           +----------+-----------+
-                                      |
-                                      v
-                           +----------------------+
-                           |   ARM7 LPC2148 MCU   |
-                           |   (Main Controller)  |
-                           +----------+-----------+
-                                      |
-        -----------------------------------------------------------------
-        |                |                |               |             |
-        v                v                v               v             v
+                                                   +-----------------------+
+                         |      Power Supply     |
+                         |       5V / 3.3V       |
+                         +-----------+-----------+
+                                     |
+                                     v
+                         +-----------------------+
+                         |    ARM7 LPC2148 MCU   |
+                         |    (Main Controller)  |
+                         +-----------+-----------+
+                                     |
+      --------------------------------------------------------------------
+      |                |                |               |               |
+      v                v                v               v               v
 
-   +-----------+    +-----------+    +-----------+    +-----------+  +-----------+
-   |   RFID    |    |    RTC    |    |   EEPROM  |    |    LCD    |  |  Keypad   |
-   |  Reader   |    |   Clock   |    |  AT24C256 |    |   20x4    |  |   4x4     |
-   |  UART0    |    |   (I2C)   |    |   (I2C)   |    |  Display  |  |  Matrix   |
-   | Interrupt |    |           |    |           |    |  (GPIO)   |  |  (GPIO)   |
-   +-----------+    +-----------+    +-----------+    +-----------+  +-----------+
++-------------+  +-------------+  +-------------+  +-------------+  +-------------+
+| RFID Reader |  |     RTC     |  |   EEPROM    |  |     LCD     |  |   Keypad    |
+|             |  |    Clock    |  |   AT24C256  |  |    20x4     |  |    4x4      |
+| UART0       |  |    (I2C)    |  |    (I2C)    |  |   Display   |  |   Matrix    |
+| Interrupt   |  |             |  |             |  |    GPIO     |  |    GPIO     |
++-------------+  +-------------+  +-------------+  +-------------+  +-------------+
 
-                                      |
-                                      v
-                               +---------------+
-                               |  Status LEDs  |
-                               |  Green / Red  |
-                               +---------------+
+                                     |
+                                     v
+
+                              +---------------+
+                              |   Status LEDs |
+                              |   Green / Red |
+                              +---------------+
 Communication Interfaces
 Peripheral	Protocol
 RFID Reader	UART0 (Interrupt Based)
