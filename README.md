@@ -210,6 +210,7 @@ Using UART interrupt allows:
 🎥 Project Demo
 
 📺 Watch the full demo here:
+
 https://youtu.be/krEoN26IEWM?si=Fgdo8XonVOpOCTyk
 
 👨‍💻 Author
