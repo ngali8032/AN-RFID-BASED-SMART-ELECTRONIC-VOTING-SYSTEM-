@@ -125,13 +125,21 @@ Vote count is updated and stored in EEPROM.
 Green LED indicates successful vote.
 
 💾 EEPROM Memory Structure
+
 Address	Data Stored
+
 0x0001	Voting flags
+
 0x0001	Voting start time
+
 0x0002	Voting end time
+
 0x0100	Officer credentials
+
 0x0200	Voter IDs
+
 0x0000	Vote counts
+
 🔄 Why UART Interrupt for RFID?
 
 Using UART interrupt allows:
