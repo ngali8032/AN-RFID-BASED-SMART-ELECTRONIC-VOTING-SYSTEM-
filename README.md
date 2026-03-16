@@ -184,7 +184,7 @@ Using UART interrupt allows:
 
 -> USB-to-UART Converter
 
---- 🧰 Tools Used ---
+----- 🧰 Tools Used -----
 
 -> Keil µVision
 
