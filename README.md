@@ -29,7 +29,7 @@ Embedded menu driven firmware design
 Real-time system control using RTC
 
 🧠 System Block Diagram
-                   +----------------------+
+                                     +----------------------+
                    |      Power Supply    |
                    |        5V / 3.3V     |
                    +----------+-----------+
