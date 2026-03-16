@@ -45,47 +45,46 @@ flowchart TD
 
 A[Power ON] --> B{Select Program}
 
-B -->|Initial Setup Program| C[Initialize LPC2148 Peripherals]
-
+%% Initial Setup Program
+B -->|Initial Data Storage Program| C[Initialize LPC2148 Peripherals]
 C --> D[Write RFID Card IDs to EEPROM]
 D --> E[Store Officer Password]
 E --> F[Store Voter Passwords]
-F --> G[Set Voting Flags]
+F --> G[Set Voting Control Flags]
 G --> H[Set Default Voting Time]
-H --> I[EEPROM Data Storage Completed]
+H --> I[Initial EEPROM Data Storage Completed]
 
-B -->|Main Voting Application| J[Initialize LCD, UART, I2C, RTC, Keypad]
-
+%% Main Voting Application
+B -->|Main Voting Application| J[Initialize LCD UART I2C RTC Keypad]
 J --> K[Display Waiting for RFID Card]
 
-K --> L[RFID Reader Sends Card ID via UART Interrupt]
+K --> L[RFID Reader Sends Card ID]
+L --> M[UART Interrupt Receives Card ID]
+M --> N{Is Officer Card?}
 
-L --> M[Controller Reads Card ID]
+%% Officer Flow
+N -->|Yes| O[Display Officer Menu]
+O --> P[Set Voting Time]
+O --> Q[Start or Stop Voting]
+O --> R[View Voting Results]
+O --> S[Reset Voting Data]
 
-M --> N{Officer Card ?}
+%% Voter Flow
+N -->|No| T[Verify Voter ID from EEPROM]
+T --> U{Voting Time Valid?}
 
-N -->|Yes| O[Show Officer Menu]
-O --> P[Set Voting Time / Start Voting / Stop Voting / View Result / Reset]
+U -->|No| V[Display Voting Closed]
 
-N -->|No| Q[Verify Voter ID from EEPROM]
+U -->|Yes| W{Already Voted?}
 
-Q --> R{Voting Time Valid ?}
+W -->|Yes| X[Display Duplicate Vote Not Allowed]
 
-R -->|No| S[Display Voting Closed]
+W -->|No| Y[Display Party List on LCD]
+Y --> Z[Voter Selects Party Using Keypad]
+Z --> AA[Update Vote Count in EEPROM]
+AA --> AB[Display Vote Casted Successfully]
 
-R -->|Yes| T{Already Voted ?}
-
-T -->|Yes| U[Display Duplicate Vote Not Allowed]
-
-T -->|No| V[Display Party List on LCD]
-
-V --> W[Voter Selects Party Using Keypad]
-
-W --> X[Update Vote Count in EEPROM]
-
-X --> Y[Display Vote Casted Successfully]
-
-Y --> K
+AB --> K
 
 -> Communication Interfaces
 
