@@ -29,7 +29,25 @@ The system ensures:
 Real-time system control using RTC
 
 🧠 System Block Diagram
+P[Power Supply<br>5V / 3.3V]
 
+    MCU[ARM7 LPC2148<br>Main Controller]
+
+    RFID[RFID Reader<br>UART0 Interrupt]
+    RTC[RTC Clock<br>I2C]
+    EEPROM[EEPROM AT24C256<br>I2C]
+    LCD[LCD 20x4 Display<br>GPIO]
+    KEYPAD[4x4 Matrix Keypad<br>GPIO]
+    LED[Status LEDs<br>Green / Red]
+
+    P --> MCU
+
+    MCU --> RFID
+    MCU --> RTC
+    MCU --> EEPROM
+    MCU --> LCD
+    MCU --> KEYPAD
+    MCU --> LED
 
 -> Communication Interfaces
 
