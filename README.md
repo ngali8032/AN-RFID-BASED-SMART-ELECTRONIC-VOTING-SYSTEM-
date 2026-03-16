@@ -32,12 +32,12 @@ Real-time system control using RTC
 
 Communication Interfaces
 Peripheral	Protocol
-RFID Reader	UART0 (Interrupt Based)
-RTC	I2C
-EEPROM	I2C
-LCD	GPIO (4-bit mode)
-Keypad	GPIO
-Status LEDs	GPIO
+-> RFID Reader	UART0 (Interrupt Based)
+-> RTC	I2C
+-> EEPROM	I2C
+-> LCD	GPIO (4-bit mode)
+-> Keypad	GPIO
+
 ⚙️ System Architecture
 RFID Reader  → UART Interrupt → LPC2148 Controller
 RTC Module   ↔ I2C
