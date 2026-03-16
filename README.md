@@ -30,9 +30,9 @@ Real-time system control using RTC
 
 🧠 System Block Diagram
 
-Communication Interfaces
+-> Communication Interfaces
 
-Peripheral	Protocol
+-> Peripheral	Protocol
 
 -> RFID Reader	UART0 (Interrupt Based)
 
