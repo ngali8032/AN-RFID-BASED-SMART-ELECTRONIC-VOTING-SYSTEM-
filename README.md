@@ -41,6 +41,9 @@ graph TD
     MCU --> LED[Status LEDs]
 ```
 
+## 🔄 System Flow Diagram
+
+```mermaid
 flowchart TD
 
 A[Power ON] --> B{Select Program}
@@ -77,14 +80,15 @@ U -->|No| V[Display Voting Closed]
 
 U -->|Yes| W{Already Voted?}
 
-W -->|Yes| X[Display Duplicate Vote Not Allowed]
+W -->|Yes| X[Duplicate Vote Not Allowed]
 
 W -->|No| Y[Display Party List on LCD]
 Y --> Z[Voter Selects Party Using Keypad]
 Z --> AA[Update Vote Count in EEPROM]
-AA --> AB[Display Vote Casted Successfully]
+AA --> AB[Vote Casted Successfully]
 
 AB --> K
+```
 
 -> Communication Interfaces
 
