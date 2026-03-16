@@ -54,7 +54,8 @@ Real-time system control using RTC
                               |
                               v
                        +-------------+
-                       |    Status   |
+                       | Status LEDs |
+                       | Green / Red |
                        +-------------+
 Communication Interfaces
 Peripheral	Protocol
