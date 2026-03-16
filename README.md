@@ -41,6 +41,52 @@ graph TD
     MCU --> LED[Status LEDs]
 ```
 
+flowchart TD
+
+A[Power ON] --> B{Select Program}
+
+B -->|Initial Setup Program| C[Initialize LPC2148 Peripherals]
+
+C --> D[Write RFID Card IDs to EEPROM]
+D --> E[Store Officer Password]
+E --> F[Store Voter Passwords]
+F --> G[Set Voting Flags]
+G --> H[Set Default Voting Time]
+H --> I[EEPROM Data Storage Completed]
+
+B -->|Main Voting Application| J[Initialize LCD, UART, I2C, RTC, Keypad]
+
+J --> K[Display Waiting for RFID Card]
+
+K --> L[RFID Reader Sends Card ID via UART Interrupt]
+
+L --> M[Controller Reads Card ID]
+
+M --> N{Officer Card ?}
+
+N -->|Yes| O[Show Officer Menu]
+O --> P[Set Voting Time / Start Voting / Stop Voting / View Result / Reset]
+
+N -->|No| Q[Verify Voter ID from EEPROM]
+
+Q --> R{Voting Time Valid ?}
+
+R -->|No| S[Display Voting Closed]
+
+R -->|Yes| T{Already Voted ?}
+
+T -->|Yes| U[Display Duplicate Vote Not Allowed]
+
+T -->|No| V[Display Party List on LCD]
+
+V --> W[Voter Selects Party Using Keypad]
+
+W --> X[Update Vote Count in EEPROM]
+
+X --> Y[Display Vote Casted Successfully]
+
+Y --> K
+
 -> Communication Interfaces
 
 -> Peripheral	Protocol
