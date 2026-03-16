@@ -31,32 +31,50 @@ Real-time system control using RTC
 🧠 System Block Diagram
 
 Communication Interfaces
+
 Peripheral	Protocol
+
 -> RFID Reader	UART0 (Interrupt Based)
+
 -> RTC	I2C
+
 -> EEPROM	I2C
+
 -> LCD	GPIO (4-bit mode)
+
 -> Keypad	GPIO
 
 ⚙️ System Architecture
+
 RFID Reader  → UART Interrupt → LPC2148 Controller
+
 RTC Module   ↔ I2C
+
 EEPROM       ↔ I2C
+
 LCD Display  ↔ GPIO
+
 Keypad Input ↔ GPIO
-Status LEDs  ↔ GPIO
+
 
 The LPC2148 microcontroller acts as the central controller, managing authentication, vote counting, storage, and user interaction.
 
 🎯 Key Features
 
 ✔ RFID based voter authentication
+
 ✔ Officer access with password protection
+
 ✔ Voting allowed only during configured time
+
 ✔ Duplicate voting prevention
+
 ✔ EEPROM based permanent vote storage
+
 ✔ LCD based user interface
+
 ✔ Keypad based input system
+
 ✔ UART interrupt driven RFID reading
 
 ⚙️ How the System Works
