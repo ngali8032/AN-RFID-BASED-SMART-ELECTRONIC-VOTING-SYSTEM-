@@ -8,23 +8,23 @@ This project is a prototype RFID-based electronic voting system designed using t
 
 The system ensures:
 
-Secure RFID-based voter authentication
+-> Secure RFID-based voter authentication
 
-Time-restricted voting using RTC
+-> Time-restricted voting using RTC
 
-Officer controlled election configuration
+-> Officer controlled election configuration
 
-Persistent vote storage using external EEPROM
+-> Persistent vote storage using external EEPROM
 
-The project demonstrates practical implementation of:
+-> The project demonstrates practical implementation of:
 
-UART interrupt-driven communication
+-> UART interrupt-driven communication
 
-I2C peripheral communication
+-> I2C peripheral communication
 
-EEPROM memory mapping
+-> EEPROM memory mapping
 
-Embedded menu driven firmware design
+-> Embedded menu driven firmware design
 
 Real-time system control using RTC
 
