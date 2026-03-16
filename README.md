@@ -1,148 +1,211 @@
-# 🚀 RFID Based Smart Electronic Voting System
-ARM7 LPC2148 | Embedded C | UART (Interrupt) | I2C | RTC | EEPROM
+🚀 RFID Based Smart Electronic Voting System
+
+ARM7 LPC2148 | Embedded C | UART Interrupt | I2C | RTC | EEPROM
 
 📌 Project Overview
-This project is a prototype RFID-based electronic voting system built using the ARM7 LPC2148 microcontroller.
+
+This project is a prototype RFID-based electronic voting system designed using the ARM7 LPC2148 microcontroller.
 
 The system ensures:
-Secure voter authentication using RFID
+
+Secure RFID-based voter authentication
+
 Time-restricted voting using RTC
-Officer-controlled configuration
+
+Officer controlled election configuration
+
 Persistent vote storage using external EEPROM
-This project demonstrates practical implementation of:
-UART interrupt handling
-I2C communication
+
+The project demonstrates practical implementation of:
+
+UART interrupt-driven communication
+
+I2C peripheral communication
+
 EEPROM memory mapping
-Embedded menu-driven system design
-Real-time control using RTC
+
+Embedded menu driven firmware design
+
+Real-time system control using RTC
+
+🧠 System Block Diagram
+                   +----------------------+
+                   |      Power Supply    |
+                   |        5V / 3.3V     |
+                   +----------+-----------+
+                              |
+                              v
+                   +----------------------+
+                   |   ARM7 LPC2148 MCU   |
+                   |   (Main Controller)  |
+                   +----------+-----------+
+                              |
+      ---------------------------------------------------------
+      |            |            |            |               |
+      v            v            v            v               v
+
++-----------+  +-----------+  +-----------+  +-----------+  +-----------+
+| RFID      |  |  RTC      |  |  EEPROM   |  |   LCD     |  |  Keypad   |
+| Reader    |  |  Clock    |  |  AT24C256 |  | 20x4      |  | 4x4       |
+| (UART0)   |  | (I2C)     |  |  (I2C)    |  | Display   |  | Matrix    |
+| Interrupt |  |           |  |           |  | (GPIO)    |  | (GPIO)    |
++-----------+  +-----------+  +-----------+  +-----------+  +-----------+
+
+                              |
+                              v
+                       +-------------+
+                       |    Status   |
+                       +-------------+
+Communication Interfaces
+Peripheral	Protocol
+RFID Reader	UART0 (Interrupt Based)
+RTC	I2C
+EEPROM	I2C
+LCD	GPIO (4-bit mode)
+Keypad	GPIO
+Status LEDs	GPIO
+⚙️ System Architecture
+RFID Reader  → UART Interrupt → LPC2148 Controller
+RTC Module   ↔ I2C
+EEPROM       ↔ I2C
+LCD Display  ↔ GPIO
+Keypad Input ↔ GPIO
+Status LEDs  ↔ GPIO
+
+The LPC2148 microcontroller acts as the central controller, managing authentication, vote counting, storage, and user interaction.
 
 🎯 Key Features
-✔ RFID-based authentication
+
+✔ RFID based voter authentication
 ✔ Officer access with password protection
-✔ Voting allowed only within configured time
+✔ Voting allowed only during configured time
 ✔ Duplicate voting prevention
-✔ EEPROM-based permanent vote storage
-✔ LCD-based menu interface
-✔ Keypad-based user interaction
-✔ Interrupt-driven UART for RFID reading
+✔ EEPROM based permanent vote storage
+✔ LCD based user interface
+✔ Keypad based input system
+✔ UART interrupt driven RFID reading
 
-🧠 System Architecture
-RFID Reader → UART Interrupt → LPC2148
-EEPROM (24C256) ↔ I2C
-RTC Module ↔ I2C
-LCD ↔ GPIO
-Keypad ↔ GPIO
-
-The microcontroller acts as the central controller that manages all peripherals.
-
-🔌 GPIO Pin Connections
-Below are the hardware connections used in this project.
-
-📟 LCD (20x4) – 4-bit Mode
-LCD Pin	LPC2148 Pin
-RS	P0.0
-EN	P0.1
-D4	P0.4
-D5	P0.5
-D6	P0.6
-D7	P0.7
-⌨ Keypad (4x4 Matrix)
-Row Pins	LPC2148
-R1	P0.8
-R2	P0.9
-R3	P0.10
-R4	P0.11
-Column Pins	LPC2148
-C1	P0.12
-C2	P0.13
-C3	P0.14
-C4	P0.15
-📡 RFID Reader
-RFID Pin	LPC2148
-TX	RXD0 (P0.1)
-RX	TXD0 (P0.0)
-
-Communication Method: UART0 with Interrupt
-💾 EEPROM – 24C256 (I2C)
-EEPROM Pin	LPC2148 Pin
-SDA	P0.27
-SCL	P0.28
-
-Communication Method: I2C0
-🕒 RTC Module (I2C)
-RTC Pin	LPC2148
-SDA	P0.27
-SCL	P0.28
 ⚙️ How the System Works
 1️⃣ Officer Configuration
 
 Officer logs in using:
+
 RFID card
+
 Password
+
 Officer can:
+
 Set voting start time
+
 Set voting end time
+
+Start or stop voting
+
 View results
-Reset system
+
+Reset voting
+
+Edit RTC time
 
 2️⃣ Voting Process
-System waits for RFID card.
-Voter presents card.
 
-System checks:
-Is voting time active?
-Has voter already voted?
-If valid → Party list displayed.
+System displays “Waiting for Card”.
+
+Voter places RFID card near reader.
+
+RFID reader sends card ID via UART.
+
+LPC2148 receives card ID using UART interrupt.
+
+Controller verifies:
+
+Voting time validity (RTC)
+
+Voter authentication (EEPROM)
+
+Party list is displayed.
+
 Voter selects option using keypad.
-Vote count updated in EEPROM.
-System blocks duplicate voting.
+
+Vote count is updated and stored in EEPROM.
+
+Green LED indicates successful vote.
 
 💾 EEPROM Memory Structure
-Address Range	Stored Data
-0x0000	Voting control flags
-0x0010	Start time
-0x0020	End time
+Address	Data Stored
+0x0001	Voting flags
+0x0001	Voting start time
+0x0002	Voting end time
 0x0100	Officer credentials
-0x0200	Voter credentials
-0x0500	Vote counts
-🔄 Why UART Interrupt?
+0x0200	Voter IDs
+0x0000	Vote counts
+🔄 Why UART Interrupt for RFID?
 
-UART interrupt is used to:
-Avoid continuous polling
-Improve efficiency
-Handle asynchronous RFID data reception
-The ISR sets a flag when complete card data is received.
+Using UART interrupt allows:
 
-🧪 Challenges Faced
-Managing EEPROM write acknowledgment
-Designing memory mapping structure
-Handling UART data correctly in interrupt
-Preventing duplicate votes
-Debugging I2C timing issues
+Efficient data reception
 
-🔮 Future Improvements
-Implement wear-leveling for EEPROM
-Add encryption for stored credentials
-Add checksum validation
-Convert system to RTOS-based architecture
-Improve tamper resistance
+No continuous polling
 
-🎥 Project Demo Video
-👉 Watch the full working demo here:
-[YouTube Demo Link Here]
-(Replace with your actual link)
+Fast response to RFID card detection
 
-🛠 Tools Used
+Better CPU utilization
+
+The interrupt service routine (ISR):
+
+Receives RFID data
+
+Stores card ID
+
+Sets a flag for processing in the main loop
+
+🛠 Hardware Components
+
+ARM7 LPC2148 Microcontroller
+
+RFID Reader Module
+
+RFID Cards
+
+20x4 LCD Display
+
+4x4 Matrix Keypad
+
+AT24C256 EEPROM
+
+RTC Module
+
+Status LEDs
+
+Power Supply
+
+USB-to-UART Converter
+
+🧰 Tools Used
+
 Keil µVision
+
 Flash Magic
-ARM7 LPC2148
+
 Embedded C
-UART & I2C Protocol Implementation
+
+UART Communication
+
+I2C Protocol Implementation
+
+🎥 Project Demo
+
+📺 Watch the full demo here:
+(Add your YouTube link here)
 
 👨‍💻 Author
+
 Gali Narendra
 Embedded Systems Developer
-Hyderabad, India
 
-GitHub: https://github.com/ngali8032
-YouTube: (Add your channel link here)
+GitHub
+https://github.com/ngali8032
+
+YouTube
+(Add your channel link)
