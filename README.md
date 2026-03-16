@@ -104,29 +104,29 @@ Officer logs in using:
 
 2️⃣ Voting Process
 
-System displays “Waiting for Card”.
+-> System displays “Waiting for Card”.
 
-Voter places RFID card near reader.
+-> Voter places RFID card near reader.
 
-RFID reader sends card ID via UART.
+-> RFID reader sends card ID via UART.
 
-LPC2148 receives card ID using UART interrupt.
+-> LPC2148 receives card ID using UART interrupt.
 
-Controller verifies:
+--- Controller verifies: ---
 
-Voting time validity (RTC)
+-> Voting time validity (RTC)
 
-Voter authentication (EEPROM)
+-> Voter authentication (EEPROM)
 
-Party list is displayed.
+-> Party list is displayed.
 
-Voter selects option using keypad.
+-> Voter selects option using keypad.
 
-Vote count is updated and stored in EEPROM.
+-> Vote count is updated and stored in EEPROM.
 
-Green LED indicates successful vote.
+-> Green LED indicates successful vote.
 
-💾 EEPROM Memory Structure
+--- 💾 EEPROM Memory Structure ---
 
 Address	Data Stored
 
